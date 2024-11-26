@@ -8,6 +8,3 @@ import Index from './components/Index.vue';
 app.component('Index', Index);
 
 app.use(router).mount('#app');
-
-console.log(app);
-console.log(router);
