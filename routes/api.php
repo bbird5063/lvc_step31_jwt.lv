@@ -24,14 +24,16 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 	Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
 	Route::post('me', 'App\Http\Controllers\AuthController@me');
 
-	Route::group(['namespace' => 'App\Http\Controllers\Fruit', 'prefix' => 'fruits'], function () {
-		Route::get('/', 'IndexController');
+	Route::group(['middleware' => 'auth:api'], function () {
+		Route::group(['namespace' => 'App\Http\Controllers\Fruit', 'prefix' => 'fruits'], function () {
+			Route::get('/', 'IndexController');
+		});
 	});
 });
 
 
 Route::group(['namespace' => 'App\Http\Controllers\User', 'prefix' => 'users'], function () {
-	Route::post('/', 'StoreController'); /* ЗАБЫЛ ПУТЬ В 'namespace'!!! */
+	Route::post('/', 'StoreController');
 });
 
 

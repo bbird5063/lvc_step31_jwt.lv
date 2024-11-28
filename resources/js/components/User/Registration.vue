@@ -23,6 +23,10 @@ export default {
 			password_confirmation: null,
 		}
 	},
+	
+	mounted() {
+		
+	},
 
 	methods: {
 		store() {
