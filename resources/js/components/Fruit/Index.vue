@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import api from '../../api';
 export default {
 	name: "Index",
 	data() {
@@ -34,19 +35,13 @@ export default {
 
 	methods: {
 		getfruits() {
-			axios.get('/api/fruits')
+			api.get('/api/auth/fruits')
 				.then(res => {
-					/**
-					 * Обязательно ".data.data",
-					 * потому что в ".data" два элемента:
-					 * 1. data: Array(...) // который нам нужен
-					 * 2. [[Prototype]]: Object
-					 */
 					this.fruits = res.data.data;
-			})
+				})
 		},
 	}
-}
+};
 </script>
 
 <style scoped></style>

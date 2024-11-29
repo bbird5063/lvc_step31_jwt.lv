@@ -20,7 +20,8 @@ export default {
 		login() {
 			axios.post('/api/auth/login', { email: this.email, password: this.password })
 				.then(res => {
-						localStorage.setItem('access_token', res.data.access_token);
+					localStorage.setItem('access_token', res.data.access_token);
+					this.$router.push({name: 'user.personal'}); // ДОБАВИЛИ
 				})
 		}
 	},
