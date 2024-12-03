@@ -9,6 +9,7 @@
 		<input v-model="password" type="password" class="form-control mb-3" placeholder="password">
 		<input v-model="password_confirmation" type="password" class="form-control mb-3" placeholder="confirm password">
 		<input @click.prevent="store" type="submit" class="btn btn-primary">
+		<div @v-if="error" class="text-danger">{{ error }}</div>
 	</div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
 			email: null,
 			password: null,
 			password_confirmation: null,
+			error: null, // ДОБАВИЛИ
 		}
 	},
 	
@@ -37,7 +39,13 @@ export default {
 				password_confirmation: this.password_confirmation
 			})
 				.then(res => {
-					console.log(res.data);
+					console.log(res);
+					localStorage.setItem('access_token', res.data.access_token);
+					this.$router.push({name: 'user.personal'});
+				})
+				.catch(error => {  // ДОБАВИЛИ
+					console.log(error.response.data.error);
+					this.error = error.response.data.error;
 				})
 		}
 

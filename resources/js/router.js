@@ -54,13 +54,13 @@ router.beforeEach((to, from, next) => { //to->куда, from->откуда, next
 		}
 	}
 
-	if (to.name == 'user.login' && accessToken) { // ЗАЧЕМ?
+	if ((to.name === 'user.login' || to.name === 'user.registration') && accessToken) {
 		return next({
 			name: 'user.personal'
 		});
 	}
 
-	next(); // если условия if-ов не соответствуют
+	next(); // если условия if-ов не соответствуют(?)
 });
 
 export default router;
